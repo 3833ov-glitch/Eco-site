@@ -135,3 +135,16 @@ ol.refs a, dl.src a{overflow-wrap:anywhere;word-break:break-word}
   #params-table thead th:first-child{width:auto}
   #params-table th,#params-table td{overflow-wrap:normal;hyphens:manual}
 }
+/* страница «О проекте» */
+.prose{max-width:46rem}
+.quote{margin:.6rem 0 1rem;padding:.8rem 1rem;background:var(--surface);border-left:6px solid var(--accent);border-radius:var(--radius)}
+.quote p{margin:0 0 .4rem;font-size:1.02rem}
+.quote footer{font-size:.85rem;color:var(--muted)}
+.chain{background:var(--eco-soft);color:#173a5c;border-radius:10px;padding:.7rem .9rem;font-weight:600}
+ol.vols{list-style:none;padding:0;margin:.4rem 0}
+ol.vols li{padding:.4rem 0;border-top:1px solid var(--line);font-size:.93rem}
+ol.vols .vol{font-weight:700;margin-right:.25rem}
+.cta{display:inline-block;background:var(--accent);color:var(--accent-ink);text-decoration:none;padding:.6rem 1rem;border-radius:10px;font-weight:600}
+.cta:hover{color:#fff;background:#084844}
+.vol26{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:.7rem .9rem}
+ol.vols .sub{color:var(--muted)}
