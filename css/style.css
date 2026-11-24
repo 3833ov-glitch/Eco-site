@@ -148,3 +148,21 @@ ol.vols .vol{font-weight:700;margin-right:.25rem}
 .cta:hover{color:#fff;background:#084844}
 .vol26{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:.7rem .9rem}
 ol.vols .sub{color:var(--muted)}
+/* контакты */
+.visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+ul.contacts{list-style:none;padding:0;margin:.5rem 0;display:grid;gap:.6rem}
+@media(min-width:40rem){ul.contacts{grid-template-columns:1fr 1fr}}
+.contact{display:flex;align-items:center;gap:.75rem;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:.6rem}
+.contact.solo{max-width:28rem}
+.cbtn{flex:1;min-width:0;display:block;min-height:44px;padding:.55rem .8rem;border-radius:10px;background:var(--accent);color:var(--accent-ink);text-decoration:none;line-height:1.3;overflow-wrap:anywhere}
+.cbtn:hover{background:#084844;color:#fff}
+.cbtn:focus-visible{outline:3px solid #f2b705;outline-offset:2px}
+.cnet{display:block;font-weight:700}
+.cdesc{display:block;font-size:.88rem}
+img.qr{flex:none;width:96px;height:96px;background:#fff;border:1px solid var(--line);border-radius:6px}
+@media(max-width:40rem){
+  header.site .wrap{gap:.1rem .35rem;flex-wrap:wrap}
+  nav.main ul{gap:0;flex-wrap:nowrap}
+  nav.main a{padding:.4rem .26rem;font-size:.78rem;white-space:nowrap}
+}
+@media(max-width:22rem){nav.main ul{flex-wrap:wrap}}
