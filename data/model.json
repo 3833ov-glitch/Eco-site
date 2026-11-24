@@ -1,0 +1,284 @@
+{
+  "version": "0.1",
+  "updated": "2026-11-24",
+  "horizon_years": 10,
+  "age_group": "30–79",
+  "ramp": [
+    0.3333,
+    0.6667,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "target": {
+    "diag": 0.8,
+    "treat": 0.64,
+    "ctrl": 0.512,
+    "src": [
+      "pickersgill2022",
+      "who_ghr2023"
+    ],
+    "note": "Цель 80-80-80: 80% людей с АГ знают диагноз, 80% из них лечатся, 80% леченых достигают контроля (≈51% от всех людей с АГ). Если в стране показатель уже выше, берём текущий."
+  },
+  "params": {
+    "f_age": {
+      "label": "Доля инсультов, приходящихся на возраст 30–79 лет",
+      "v": 0.65,
+      "lo": 0.55,
+      "hi": 0.75,
+      "unit": "доля",
+      "kind": "assumption",
+      "src": [
+        "feigin2026"
+      ],
+      "note": "По GBD 2023 около 52% всех инсультов в мире происходит до 70 лет; добавляем возраст 70–79 и вычитаем возраст до 30. Одинаково для всех стран — упрощение."
+    },
+    "rr_unc": {
+      "label": "Во сколько раз риск инсульта у человека с неконтролируемой АГ выше, чем у остальных взрослых 30–79",
+      "v": 2.5,
+      "lo": 2.0,
+      "hi": 3.0,
+      "unit": "отношение рисков",
+      "kind": "literature",
+      "src": [
+        "interstroke2016"
+      ],
+      "note": "INTERSTROKE: АГ связана с инсультом с отношением шансов 2,98 (99% ДИ 2,72–3,28). Берём осторожнее: 2,5 (2,0–3,0)."
+    },
+    "rrr": {
+      "label": "Снижение риска инсульта у человека, чьё давление стало контролируемым",
+      "v": 0.35,
+      "lo": 0.27,
+      "hi": 0.41,
+      "unit": "доля",
+      "kind": "literature",
+      "src": [
+        "ettehad2016",
+        "law2009"
+      ],
+      "note": "Снижение САД на 10 мм рт. ст.: −27% инсультов (Ettehad 2016, ОР 0,73; 0,68–0,77); −41% при снижении на 10/5 мм рт. ст. (Law 2009)."
+    },
+    "cost_treat_gdp": {
+      "label": "Стоимость лечения одного пациента с АГ в год (лекарства + визиты), доля ВВП на душу",
+      "v": 0.01,
+      "lo": 0.004,
+      "hi": 0.035,
+      "unit": "доля ВВП/чел.",
+      "kind": "illustrative",
+      "src": [
+        "heartsjacc2023",
+        "mexico2022",
+        "kirkland2018"
+      ],
+      "note": "Иллюстрация. Ориентиры: программы HEARTS в странах со средним и низким доходом — 8–43 долл. США на пациента в год; США — около 1920 долл. дополнительных расходов в год у человека с АГ. Это примерно 0,4–3,5% ВВП на душу."
+    },
+    "intensify_share": {
+      "label": "Дополнительные затраты на доведение давления до цели (чаще визиты, комбинированные препараты) у каждого нового пациента с контролем, доля от годовой стоимости лечения",
+      "v": 0.5,
+      "lo": 0.25,
+      "hi": 1.0,
+      "unit": "доля",
+      "kind": "illustrative",
+      "src": [],
+      "note": "Иллюстрация: учитывает, что контроль давления у уже лечащихся требует усиления лечения."
+    },
+    "cost_screen_gdp": {
+      "label": "Стоимость одного измерения давления в рамках организованного скрининга, доля ВВП на душу",
+      "v": 0.0005,
+      "lo": 0.0002,
+      "hi": 0.001,
+      "unit": "доля ВВП/чел.",
+      "kind": "illustrative",
+      "src": [],
+      "note": "Иллюстрация без опоры на страновое исследование: нужна местная калькуляция."
+    },
+    "screen_interval": {
+      "label": "Как часто взрослый 30–79 лет без диагноза АГ проходит измерение давления в сценарии ЭЦО",
+      "v": 2,
+      "unit": "лет",
+      "kind": "assumption",
+      "src": []
+    },
+    "cost_confirm_gdp": {
+      "label": "Подтверждение диагноза (повторные измерения, базовые анализы) на одного обследуемого, доля ВВП на душу",
+      "v": 0.005,
+      "lo": 0.002,
+      "hi": 0.01,
+      "unit": "доля ВВП/чел.",
+      "kind": "illustrative",
+      "src": [],
+      "note": "Иллюстрация. На одного нового пациента с подтверждённой АГ обследуются 1,5 человека с повышенным результатом скрининга (часть не подтверждается)."
+    },
+    "confirm_ratio": {
+      "label": "Сколько человек проходят подтверждение на один новый подтверждённый диагноз",
+      "v": 1.5,
+      "unit": "чел.",
+      "kind": "assumption",
+      "src": []
+    },
+    "cost_stroke_gdp": {
+      "label": "Стоимость лечения и реабилитации одного инсульта в первый год, доля ВВП на душу",
+      "v": 1.0,
+      "lo": 0.5,
+      "hi": 1.5,
+      "unit": "доля ВВП/чел.",
+      "kind": "illustrative",
+      "src": [
+        "strilciuc2021",
+        "germany_cost2018"
+      ],
+      "note": "Иллюстрация. Обзор 46 исследований: в странах с высоким доходом в среднем 27 702 долл. на пациента в год, с доходом выше среднего — 14 478 долл.; США — 59 900 долл. (цены 2020 г.). Германия: 11 500–42 400 евро за первый год. Это примерно 0,3–1,6 ВВП на душу."
+    }
+  },
+  "sources": {
+    "ncdrisc": {
+      "title": "NCD Risk Factor Collaboration (NCD-RisC). Worldwide trends in hypertension prevalence and progress in treatment and control from 1990 to 2019. Lancet 2021;398(10304):957–980",
+      "date": "2021-08-24",
+      "data_year": "2019",
+      "accessed": "2026-11-24",
+      "url": "https://doi.org/10.1016/S0140-6736(21)01330-1",
+      "via": "Данные взяты из WHO Global Health Observatory (индикаторы NCD_HYP_PREVALENCE_C, NCD_HYP_DIAGNOSIS_C, NCD_HYP_TREATMENT_C, NCD_HYP_CONTROL_C; оценки NCD-RisC, обе половины, грубые показатели, 30–79 лет)",
+      "via_url": "https://ghoapi.azureedge.net/api/NCD_HYP_CONTROL_C"
+    },
+    "who_ghr2023": {
+      "title": "ВОЗ. Global report on hypertension: the race against a silent killer",
+      "date": "2023-09-19",
+      "accessed": "2026-11-24",
+      "url": "https://www.who.int/publications/i/item/9789240081062"
+    },
+    "who_profiles": {
+      "title": "ВОЗ. Hypertension country profiles 2023 (страновые профили; например, Россия: 43,1 млн взрослых 30–79 лет с АГ)",
+      "date": "2023-09-19",
+      "accessed": "2026-11-24",
+      "url": "https://cdn.who.int/media/docs/default-source/country-profiles/hypertension/hypertension-2023/hypertension_rus_2023.pdf"
+    },
+    "gbd21": {
+      "title": "GBD 2021 Stroke Risk Factor Collaborators. Global, regional, and national burden of stroke and its risk factors, 1990–2021. Lancet Neurol 2024;23(10):973–1003, табл. 1 (число новых случаев инсульта в 2021 г., 95% интервал неопределённости)",
+      "date": "2024-10",
+      "data_year": "2021",
+      "accessed": "2026-11-24",
+      "url": "https://doi.org/10.1016/S1474-4422(24)00369-7",
+      "via_url": "https://eprints.whiterose.ac.uk/id/eprint/218276/"
+    },
+    "wb": {
+      "title": "Всемирный банк, World Development Indicators: население по полу и 5-летним возрастным группам (SP.POP.3034…7579.MA/FE.5Y, SP.POP.TOTL.MA/FE.IN; на основе UN World Population Prospects)",
+      "date": "2026-11-11",
+      "accessed": "2026-11-24",
+      "url": "https://data.worldbank.org/indicator/SP.POP.TOTL"
+    },
+    "wbgdp": {
+      "title": "Всемирный банк, World Development Indicators: ВВП на душу населения в текущих ценах национальной валюты (NY.GDP.PCAP.CN)",
+      "date": "2026-11-11",
+      "accessed": "2026-11-24",
+      "url": "https://data.worldbank.org/indicator/NY.GDP.PCAP.CN"
+    },
+    "ettehad2016": {
+      "title": "Ettehad D. и др. Blood pressure lowering for prevention of cardiovascular disease and death: a systematic review and meta-analysis. Lancet 2016;387(10022):957–967",
+      "date": "2016-03-05",
+      "url": "https://doi.org/10.1016/S0140-6736(15)01225-8"
+    },
+    "law2009": {
+      "title": "Law M.R., Morris J.K., Wald N.J. Use of blood pressure lowering drugs in the prevention of cardiovascular disease: meta-analysis of 147 randomised trials. BMJ 2009;338:b1665",
+      "date": "2009-05-19",
+      "url": "https://doi.org/10.1136/bmj.b1665"
+    },
+    "interstroke2016": {
+      "title": "O’Donnell M.J. и др. Global and regional effects of potentially modifiable risk factors associated with acute stroke in 32 countries (INTERSTROKE). Lancet 2016;388(10046):761–775",
+      "date": "2016-07-15",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27431356/"
+    },
+    "pickersgill2022": {
+      "title": "Pickersgill S.J. и др. Modeling global 80-80-80 blood pressure targets and cardiovascular outcomes. Nature Medicine 2022;28:1693–1699",
+      "date": "2022-08",
+      "url": "https://doi.org/10.1038/s41591-022-01890-4"
+    },
+    "feigin2026": {
+      "title": "Feigin V.L., Volovici V., Brainin M. и др. The Latest Global Stroke Fact Sheet 1990–2023: Global Burden of Disease Study (табл. 1: 52% инсультов — до 70 лет)",
+      "date": "2026",
+      "accessed": "2026-11-24",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13327665/"
+    },
+    "strilciuc2021": {
+      "title": "Strilciuc S. и др. The economic burden of stroke: a systematic review of cost of illness studies. J Med Life 2021;14(5):606–619",
+      "date": "2021",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8742896/"
+    },
+    "germany_cost2018": {
+      "title": "PCV55 — Economic burden of stroke in Germany: a systematic review. Value in Health 2018 (тезисы ISPOR)",
+      "date": "2018",
+      "url": "https://www.valueinhealthjournal.com/article/S1098-3015(18)33902-0/fulltext"
+    },
+    "heartsjacc2023": {
+      "title": "Implementation of Global Hearts Hypertension Control Programs in 32 Low- and Middle-Income Countries: JACC International. J Am Coll Cardiol 2023",
+      "date": "2023",
+      "url": "https://doi.org/10.1016/j.jacc.2023.08.043"
+    },
+    "mexico2022": {
+      "title": "Assessing costs of a hypertension program in primary care: evidence from the HEARTS program in Mexico (2022)",
+      "date": "2022",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9473450/"
+    },
+    "kirkland2018": {
+      "title": "Kirkland E.B. и др. Trends in Healthcare Expenditures Among US Adults With Hypertension: National Estimates, 2003–2014. J Am Heart Assoc 2018;7(11):e008731",
+      "date": "2018-05-30",
+      "url": "https://doi.org/10.1161/JAHA.118.008731"
+    },
+    "aha2024": {
+      "title": "American Heart Association. 2024 Heart Disease and Stroke Statistics. Circulation 2024",
+      "date": "2024-01",
+      "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001209"
+    },
+    "erlangen2024": {
+      "title": "Erlanger Schlaganfall-Register / FAU, пресс-релиз «Größtes deutsches Schlaganfall-Register: Forschung seit 30 Jahren»",
+      "date": "2024-05",
+      "url": "https://idw-online.de/de/news834050"
+    },
+    "by2025": {
+      "title": "«СБ. Беларусь сегодня»: «В Беларуси ежегодно регистрируют около 41 тысячи случаев инсульта» (слова главного внештатного ангионевролога Минздрава)",
+      "date": "2025-10-27",
+      "url": "https://www.sb.by/articles/v-belarusi-kazhdyy-god-fiksiruetsya-okolo-41-tysyachi-novykh-insultov-obratite-vnimanie-na-faktory-r.html"
+    },
+    "uz2025": {
+      "title": "Gazeta.uz: National Center for Neurology and Neurorehabilitation to be established in Uzbekistan (данные пресс-службы президента: ~60 000 инсультов в год)",
+      "date": "2025-08-21",
+      "url": "https://www.gazeta.uz/en/2025/08/21/neurology/"
+    },
+    "kz2022": {
+      "title": "Zhakhina G. и др. Incidence and mortality rates of strokes in Kazakhstan in 2014–2019. Scientific Reports 2022;12",
+      "date": "2022-09-26",
+      "url": "https://www.nature.com/articles/s41598-022-20302-8"
+    }
+  },
+  "crosscheck": [
+    {
+      "iso3": "USA",
+      "national": "≈610 000 первых инсультов в год (всего ≈795 000 с повторными)",
+      "src": "aha2024"
+    },
+    {
+      "iso3": "DEU",
+      "national": "≈270 000 инсультов в год, из них ≈66 000 повторных (≈204 000 первых)",
+      "src": "erlangen2024"
+    },
+    {
+      "iso3": "BLR",
+      "national": "≈41 000 случаев инсульта в год (регистрируемые, включая повторные)",
+      "src": "by2025"
+    },
+    {
+      "iso3": "UZB",
+      "national": "≈60 000 инсультов в год (регистрируемые)",
+      "src": "uz2025"
+    },
+    {
+      "iso3": "KAZ",
+      "national": "177 947 госпитализированных пациентов за 2014–2019 гг. (≈29 700 в год; только больничные случаи)",
+      "src": "kz2022"
+    }
+  ]
+}
